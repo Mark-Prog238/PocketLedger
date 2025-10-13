@@ -1,0 +1,22 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 3306,
+      "sshOptions": {
+        "port": 22
+      },
+      "driver": "MariaDB",
+      "database": "pocketledger",
+      "username": "pocket",
+      "password": "yourStrongPwd",
+      "name": "PocketLedger"
+    }
+  ]
+}
