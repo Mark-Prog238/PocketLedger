@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
-import { View, Text, Pressable, Alert } from 'react-native';
-import CustumInput from 'components/InputField'
-import { getApiUrl, API_ENDPOINTS } from '../config/api';
-import { GlassCard, InputCard, CustomButton } from './GlassCard';
-import {styles} from '../components/LoginForm'
-
-
+import React, { useState } from "react";
+import { View, Text, Pressable, Alert } from "react-native";
+import CustumInput from "components/CustumInputs";
+import { getApiUrl, API_ENDPOINTS } from "../config/api";
+import { GlassCard, InputCard, CustomButton } from "./GlassCard";
+import { styles } from "../components/LoginForm";
 
 type ResetProps = { onBack: () => void };
 
 export function PasswordResetForm({ onBack }: ResetProps) {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const requestReset = async () => {
     if (!email.trim()) {
-      Alert.alert('Please enter your email');
+      Alert.alert("Please enter your email");
       return;
     }
     setIsLoading(true);
     try {
       const res = await fetch(getApiUrl(API_ENDPOINTS.RESET_REQUEST), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      if (!res.ok) throw new Error('Request failed');
-      Alert.alert('Check your inbox for the reset link.');
+      if (!res.ok) throw new Error("Request failed");
+      Alert.alert("Check your inbox for the reset link.");
       onBack(); // return to login after success
     } catch (err: any) {
       Alert.alert(err.message);
@@ -52,7 +50,7 @@ export function PasswordResetForm({ onBack }: ResetProps) {
 
       <CustomButton onPress={requestReset} disabled={isLoading}>
         <Text style={styles.buttonText}>
-          {isLoading ? 'Sending...' : 'Send reset link'}
+          {isLoading ? "Sending..." : "Send reset link"}
         </Text>
       </CustomButton>
 

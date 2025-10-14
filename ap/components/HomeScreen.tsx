@@ -28,31 +28,47 @@ export function HomeScreen() {
   const isIos = Platform.OS === "ios";
   const isAndroid = Platform.OS === "android";
   // const isWeb = Platform.OS === "web";
-  const [selected, setSelected] = useState<string>(menuItems[0]);
+  const [selected, setSelected] = useState<string>("ADD");
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleSelect = (item: string) => {
     setSelected(item);
     if (item === "LOGOUT") logout();
+    setShowMenu(false);
     // no onSelect here; HomeScreen manages content locally
   };
 
   return (
     <>
-      <View className="bg-gray-800 flex-1">
+      <View className="bg-gray-900 flex-1">
         {/*! If MOBILE */}
         {isIos || isAndroid ? (
           <SafeAreaView className="flex-1 w-full">
-            <SideMenu onSelect={handleSelect} />
-            <View className="flex-1 w-full px-4">
-              {selected === "HOME" && <HomeAnalytics />}
-              {selected === "ADD" && <CreateTransaction />}
+            <SideMenu
+              isOpen={showMenu}
+              onToggle={() => setShowMenu(!showMenu)}
+              onSelect={handleSelect}
+              hideBurger={true}
+            />
+            <View className="flex-1 w-full">
+              {selected === "HOME" && (
+                <View className="px-4">
+                  <HomeAnalytics />
+                </View>
+              )}
+              {selected === "ADD" && (
+                <CreateTransaction
+                  onMenuPress={() => setShowMenu(true)}
+                  isMenuOpen={showMenu}
+                />
+              )}
               {selected === "BUDGET" && (
-                <View className="w-full">
+                <View className="w-full px-4">
                   <Text className="text-white">Budget (coming soon)</Text>
                 </View>
               )}
               {selected === "PROFILE" && (
-                <View className="w-full">
+                <View className="w-full px-4">
                   <Text className="text-white">Profile (coming soon)</Text>
                 </View>
               )}

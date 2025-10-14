@@ -28,25 +28,28 @@ const CustumInput: React.FC<Props> = ({ label, error, ...props }) => {
       : "text-gray-400";
 
   return (
-    <View className="relative mb-4">
+    <View className="relative mb-6">
       <TextInput
-        className={`pt-2 pb-2 h-14 cursor-default bg-gray-700/85 rounded-xl px-4 text-white text-base border ${baseBorder}`}
+        className={`font-inter pt-6 pb-3 h-16 cursor-default bg-gray-800/50 backdrop-blur-sm rounded-2xl px-5 text-white text-base border-2 transition-all duration-200 ${baseBorder} ${
+          isFocused ? 'border-violet-400 bg-gray-700/50' : 'border-gray-600/50'
+        }`}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChangeText={handleChange}
         placeholder=""
         value={value as any}
+        placeholderTextColor="rgba(255,255,255,0.4)"
         {...restProps}
       />
       <Text
-        className={`absolute left-4 transition-all duration-200 ${
-          isActive ? "top-1 text-xs" : "top-4 text-base"
-        } ${labelColor}`}
+        className={`font-inter-medium absolute left-5 transition-all duration-200 ${
+          isActive ? "top-2 text-xs text-gray-300" : "top-5 text-base text-gray-400"
+        }`}
       >
         {label}
       </Text>
       {error ? (
-        <Text className="text-xs text-red-400 mt-1 ml-1">{error}</Text>
+        <Text className="font-inter text-xs text-red-400 mt-2 ml-1">{error}</Text>
       ) : null}
     </View>
   );

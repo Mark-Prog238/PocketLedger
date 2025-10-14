@@ -16,11 +16,20 @@ import { RegisterForm } from "./components/RegisterForm";
 import { HomeScreen } from "./components/HomeScreen";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 
 function AppContent() {
   const [isLogin, setIsLogin] = useState(true);
   const { isAuthenticated, isLoading } = useAuth();
-  if (isLoading) {
+  
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+  });
+
+  if (!fontsLoaded || isLoading) {
     return (
       <View
         style={{

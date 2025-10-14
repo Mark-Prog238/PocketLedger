@@ -20,11 +20,17 @@ type MenuItem = { label: string; icon: string };
 type Props = {
   menuItems?: MenuItem[];
   onSelect?: (item: string) => void;
+  isOpen?: boolean;
+  onToggle?: () => void;
+  hideBurger?: boolean;
 };
 
 export default function SideMenu({
   menuItems = sideBarItems,
   onSelect,
+  isOpen = false,
+  onToggle,
+  hideBurger = false,
 }: Props) {
   const [selected, setSelected] = useState<string>(menuItems[0].label);
   const { logout, user } = useAuth();
@@ -43,22 +49,31 @@ export default function SideMenu({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShown, drawerWidth]);
 
+  // Sync external isOpen prop with internal state
+  useEffect(() => {
+    setIsShown(isOpen);
+  }, [isOpen]);
+
   const drawerStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
     width: drawerWidth,
   }));
 
-  const toggleMenu = () => setIsShown((prev) => !prev);
+  const toggleMenu = () => {
+    setIsShown((prev) => !prev);
+    onToggle?.();
+  };
   const handleSelect = (item: string) => {
     setSelected(item);
     if (item === "LOGOUT") logout();
     else onSelect?.(item);
+    setIsShown(false); // Close menu after selection
   };
 
   return (
     <>
-      {/* BURGER ICON */}
-      {!isShown && (
+      {/* BURGER ICON - only show if not hidden */}
+      {!isShown && !hideBurger && (
         <View className="w-2/6 pl-5 pt-5">
           <Pressable
             onPress={toggleMenu}
