@@ -15,7 +15,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-
+import { sideBarItems } from "components";
 type MenuItem = { label: string; icon: string };
 type Props = {
   menuItems?: MenuItem[];
@@ -23,12 +23,7 @@ type Props = {
 };
 
 export default function SideMenu({
-  menuItems = [
-    { label: "HOME", icon: "home-outline" },
-    { label: "ADD", icon: "add-circle-outline" },
-    { label: "BUDGET", icon: "wallet-outline" },
-    { label: "PROFILE", icon: "person-outline" },
-  ],
+  menuItems = sideBarItems,
   onSelect,
 }: Props) {
   const [selected, setSelected] = useState<string>(menuItems[0].label);

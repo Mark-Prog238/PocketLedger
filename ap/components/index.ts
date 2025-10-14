@@ -36,3 +36,10 @@ export const commonEmojis = [
   "✈️",
   "🎮",
 ];
+
+export const sideBarItems = [
+  { label: "HOME", icon: "home-outline" },
+  { label: "ADD", icon: "add-circle-outline" },
+  { label: "BUDGET", icon: "wallet-outline" },
+  { label: "PROFILE", icon: "person-outline" },
+];

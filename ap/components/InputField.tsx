@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TextInputProps } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, TextInput, TextInputProps } from "react-native";
 
 type Props = TextInputProps & {
   label: string;
@@ -20,13 +20,17 @@ const CustumInput: React.FC<Props> = ({ label, error, ...props }) => {
   const hasValue = value?.toString().trim().length! > 0 || hasText;
   const isActive = hasValue || isFocused;
 
-  const baseBorder = error ? 'border-red-500/80' : 'border-gray-600/90';
-  const labelColor = error ? 'text-red-300' : isActive ? 'text-gray-200' : 'text-gray-400';
+  const baseBorder = error ? "border-red-500/80" : "border-gray-600/90";
+  const labelColor = error
+    ? "text-red-300"
+    : isActive
+      ? "text-gray-200"
+      : "text-gray-400";
 
   return (
     <View className="relative mb-4">
       <TextInput
-        className={`pt-4 pb-3 cursor-default bg-gray-700/85 rounded-xl px-4 text-white text-base border ${baseBorder}`}
+        className={`pt-3 min-h-16 pb-3 cursor-default bg-gray-700/85 rounded-xl px-4 text-white text-base border ${baseBorder}`}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChangeText={handleChange}
@@ -36,7 +40,7 @@ const CustumInput: React.FC<Props> = ({ label, error, ...props }) => {
       />
       <Text
         className={`absolute left-4 transition-all duration-200 ${
-          isActive ? 'top-1 text-xs' : 'top-3.5 text-base'
+          isActive ? "top-1 text-xs" : "text-center text-lg font-bold"
         } ${labelColor}`}
       >
         {label}
@@ -49,5 +53,3 @@ const CustumInput: React.FC<Props> = ({ label, error, ...props }) => {
 };
 
 export default CustumInput;
-
-
