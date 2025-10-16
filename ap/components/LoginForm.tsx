@@ -6,6 +6,7 @@ import { getApiUrl, API_ENDPOINTS } from "../config/api";
 import { GlassCard, InputCard, CustomButton } from "./GlassCard";
 import { useAuth } from "contexts/AuthContext";
 import { PasswordResetForm } from "./PasswordResetPage";
+import { authStyles } from "./styles";
 
 interface LoginFormProps {
   onToggleMode: () => void;
@@ -49,7 +50,7 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
   return (
     <GlassCard>
       {/* Form Header */}
-      <Text style={styles.title}>LOGIN</Text>
+      <Text style={authStyles.title}>LOGIN</Text>
 
       {/* Email Input */}
       <InputCard>
@@ -77,54 +78,24 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
 
       {/* Login Button */}
       <CustomButton onPress={login} disabled={isLoading}>
-        <Text style={styles.buttonText}>
+        <Text style={authStyles.buttonText}>
           {isLoading ? "Signing In..." : "LOGIN"}
         </Text>
       </CustomButton>
 
       {/* Footer Links */}
-      <View className="pt-5" style={styles.footerContainer}>
+      <View className="pt-5" style={authStyles.footerContainer}>
         <Pressable onPress={onToggleMode}>
-          <Text style={styles.footerText}>
-            Don't have an account? <Text style={styles.linkText}>Sign up</Text>
+          <Text style={authStyles.footerText}>
+            Don't have an account?{" "}
+            <Text style={authStyles.linkText}>Sign up</Text>
           </Text>
         </Pressable>
 
         <Pressable onPress={() => setShowReset(true)}>
-          <Text style={styles.footerText}>Forgot your password?</Text>
+          <Text style={authStyles.footerText}>Forgot your password?</Text>
         </Pressable>
       </View>
     </GlassCard>
   );
 }
-
-export const styles = StyleSheet.create({
-  title: {
-    fontFamily: "Inter_700Bold",
-    color: "white",
-    fontSize: 22,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
-    textTransform: "uppercase",
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  footerContainer: {
-    alignItems: "center",
-    gap: 8,
-  },
-  footerText: {
-    color: "#d1d5db",
-    textAlign: "center",
-    fontSize: 12,
-  },
-  linkText: {
-    color: "white",
-    fontWeight: "bold",
-  },
-});

@@ -3,7 +3,7 @@ import { View, Text, Pressable, Alert } from "react-native";
 import CustumInput from "components/CustumInputs";
 import { getApiUrl, API_ENDPOINTS } from "../config/api";
 import { GlassCard, InputCard, CustomButton } from "./GlassCard";
-import { styles } from "../components/LoginForm";
+import { authStyles } from "./styles";
 
 type ResetProps = { onBack: () => void };
 
@@ -35,7 +35,7 @@ export function PasswordResetForm({ onBack }: ResetProps) {
 
   return (
     <GlassCard>
-      <Text style={styles.title}>Reset Password</Text>
+      <Text style={authStyles.title}>Reset Password</Text>
 
       <InputCard>
         <CustumInput
@@ -49,13 +49,13 @@ export function PasswordResetForm({ onBack }: ResetProps) {
       </InputCard>
 
       <CustomButton onPress={requestReset} disabled={isLoading}>
-        <Text style={styles.buttonText}>
+        <Text style={authStyles.buttonText}>
           {isLoading ? "Sending..." : "Send reset link"}
         </Text>
       </CustomButton>
 
       <Pressable onPress={onBack} className="mt-4">
-        <Text style={styles.footerText}>← Back to login</Text>
+        <Text style={authStyles.footerText}>← Back to login</Text>
       </Pressable>
     </GlassCard>
   );

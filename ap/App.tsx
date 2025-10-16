@@ -1,6 +1,6 @@
 import "./global.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,14 +14,48 @@ import { StatusBar } from "expo-status-bar";
 import { LoginForm } from "./components/LoginForm";
 import { RegisterForm } from "./components/RegisterForm";
 import { HomeScreen } from "./components/HomeScreen";
+import { OnboardingFlow } from "./components/OnboardingFlow";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+} from "@expo-google-fonts/inter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function AppContent() {
   const [isLogin, setIsLogin] = useState(true);
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState<
+    boolean | null
+  >(null);
   const { isAuthenticated, isLoading } = useAuth();
-  
+
+  useEffect(() => {
+    checkOnboardingStatus();
+  }, []);
+
+  const checkOnboardingStatus = async () => {
+    try {
+      const completed = await AsyncStorage.getItem("onboarding_completed");
+      setHasCompletedOnboarding(completed === "true");
+    } catch (error) {
+      console.error("Error checking onboarding status:", error);
+      setHasCompletedOnboarding(false);
+    }
+  };
+
+  const completeOnboarding = async () => {
+    try {
+      await AsyncStorage.setItem("onboarding_completed", "true");
+      setHasCompletedOnboarding(true);
+    } catch (error) {
+      console.error("Error saving onboarding status:", error);
+    }
+  };
+
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -29,7 +63,7 @@ function AppContent() {
     Inter_700Bold,
   });
 
-  if (!fontsLoaded || isLoading) {
+  if (!fontsLoaded || isLoading || hasCompletedOnboarding === null) {
     return (
       <View
         style={{
@@ -49,6 +83,11 @@ function AppContent() {
         </Text>
       </View>
     );
+  }
+
+  // Show onboarding for new users
+  if (!hasCompletedOnboarding) {
+    return <OnboardingFlow onComplete={completeOnboarding} />;
   }
 
   if (isAuthenticated) {

@@ -6,6 +6,12 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   },
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "ts-node server.ts",
+    "build": "tsc",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
