@@ -136,7 +136,7 @@ PocketLedger-mobile_app/
 ### Onboarding Experience
 
 ![Welcome Screen](https://i.postimg.cc/JzKwGWp7/temp-Imageml3o-Y7.avif)
-https://i.postimg.cc/tggK6mcq/temp-Image-XL8m-Va.avif
+![Onboarding Screen](https://i.postimg.cc/tggK6mcq/temp-Image-XL8m-Va.avif)
 _Welcome to PocketLedger - Your personal finance companion_
 
 ### Authentication
