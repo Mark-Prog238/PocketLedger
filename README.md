@@ -1,275 +1,225 @@
-# PocketLedger - Mobile Finance App
+# 💰 PocketLedger - Personal Finance Manager
 
-A beautiful and modern mobile finance app built with React Native, Expo, and Node.js. Track your expenses, manage budgets, and gain insights into your spending habits.
+A modern, cross-platform personal finance management app built with React Native and Expo. Track your expenses, manage budgets, and gain insights into your spending habits with a beautiful, intuitive interface.
 
-## Features
+## ✨ Features
 
-- 📱 **Cross-platform**: Works on iOS, Android, and Web
-- 💰 **Transaction Management**: Add income and expenses with categories
-- 📊 **Analytics Dashboard**: Visualize your spending patterns
-- 🎯 **Budget Tracking**: Create and monitor budgets
-- 🏷️ **Custom Categories**: Create personalized spending categories
-- 🔐 **Secure Authentication**: JWT-based authentication
-- 📈 **Real-time Insights**: Track your financial health
+### 📱 Cross-Platform
 
-## Tech Stack
+- **Mobile**: Native iOS and Android support with swipe navigation
+- **Web**: Responsive web interface with desktop-optimized layout
+- **Consistent UI**: Unified design language across all platforms
 
-### Frontend (Mobile App)
+### 💳 Core Functionality
 
-- React Native with Expo
-- TypeScript
-- NativeWind (Tailwind CSS for React Native)
-- React Native Reanimated
-- React Native Safe Area Context
-- AsyncStorage for local storage
+- **Transaction Management**: Add, edit, and categorize income and expenses
+- **Smart Categories**: Create custom categories with icons and colors
+- **Transaction History**: View and search through all your transactions
+- **Budget Tracking**: Set and monitor spending limits
+- **Analytics & Reports**: Visual insights into your financial patterns
+- **User Profiles**: Secure authentication and profile management
 
-### Backend (API Server)
+### 🎨 Modern Design
 
-- Node.js with Express
-- TypeScript
-- MySQL database
-- JWT authentication
-- bcrypt for password hashing
-- CORS enabled
+- **Dark Theme**: Easy on the eyes with a sleek dark interface
+- **Glass Morphism**: Beautiful frosted glass effects
+- **Smooth Animations**: Fluid transitions and micro-interactions
+- **Responsive Layout**: Adapts perfectly to any screen size
 
-## Prerequisites
+## 🚀 Quick Start
+
+### Prerequisites
 
 - Node.js (v16 or higher)
 - npm or yarn
+- Expo CLI (`npm install -g @expo/cli`)
 - MySQL database
-- Expo CLI (for mobile development)
-- iOS Simulator (for iOS development)
-- Android Studio (for Android development)
 
-## Quick Start
+### Installation
 
-### 1. Database Setup
+1. **Clone the repository**
 
-1. Install MySQL and create a database:
+   ```bash
+   git clone <your-repo-url>
+   cd PocketLedger-mobile_app
+   ```
 
-```sql
-CREATE DATABASE pocketledger;
-```
+2. **Install dependencies**
 
-2. Run the database schema:
+   ```bash
+   # Frontend
+   cd ap
+   npm install
 
-```bash
-mysql -u your_username -p pocketledger < database_schema.sql
-```
+   # Backend
+   cd ../pb_backend
+   npm install
+   ```
 
-### 2. Backend Setup
+3. **Database Setup**
 
-1. Navigate to the backend directory:
+   ```bash
+   # Run the database setup script
+   ./setup.sh
+   ```
 
-```bash
-cd pb_backend
-```
+4. **Environment Configuration**
 
-2. Install dependencies:
+   ```bash
+   # Backend environment
+   cd pb_backend
+   cp env.example .env
+   # Edit .env with your database credentials
+   ```
 
-```bash
-npm install
-```
+5. **Start the application**
 
-3. Create environment file:
+   ```bash
+   # Start backend server
+   cd pb_backend
+   npm run dev
 
-```bash
-cp env.example .env
-```
+   # Start frontend (in new terminal)
+   cd ap
+   npm start
+   ```
 
-4. Edit `.env` with your database credentials:
-
-```env
-DB_HOST=localhost
-DB_USER=your_username
-DB_PASSWORD=your_password
-DB_NAME=pocketledger
-API_PORT=8080
-JWT_SECRET=your_super_secret_jwt_key_here
-```
-
-5. Start the backend server:
-
-```bash
-npm run dev
-```
-
-The API will be available at `http://localhost:8080`
-
-### 3. Mobile App Setup
-
-1. Navigate to the app directory:
-
-```bash
-cd ap
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Update API configuration:
-   Edit `config/api.ts` and update the `API_BASE_URL` to match your backend server IP address.
-
-4. Start the development server:
-
-```bash
-npm start
-```
-
-5. Run on your preferred platform:
-
-```bash
-# iOS
-npm run ios
-
-# Android
-npm run android
-
-# Web
-npm run web
-```
-
-## Project Structure
+## 🏗️ Project Structure
 
 ```
 PocketLedger-mobile_app/
-├── ap/                          # React Native app
-│   ├── components/              # React components
+├── ap/                          # React Native frontend
+│   ├── components/              # Reusable UI components
 │   │   ├── parts/              # Screen components
-│   │   │   ├── HomeAnalytics.tsx
 │   │   │   ├── CreateTransaction.tsx
+│   │   │   ├── TransactionHistory.tsx
+│   │   │   ├── AnalyticsReports.tsx
 │   │   │   ├── BudgetScreen.tsx
 │   │   │   └── ProfileScreen.tsx
-│   │   ├── LoginForm.tsx
-│   │   ├── RegisterForm.tsx
-│   │   └── ...
+│   │   ├── OnboardingFlow.tsx  # User onboarding
+│   │   ├── CustomNavBar.tsx    # Bottom navigation
+│   │   └── SwipeableContainer.tsx
 │   ├── contexts/               # React contexts
-│   │   └── AuthContext.tsx
+│   │   └── AuthContext.tsx     # Authentication state
 │   ├── config/                 # Configuration
-│   │   └── api.ts
-│   └── App.tsx
-├── pb_backend/                 # Node.js API server
-│   ├── server.ts              # Main server file
-│   ├── package.json
-│   └── env.example
-├── database_schema.sql         # Database schema
+│   │   └── api.ts             # API endpoints
+│   └── App.tsx                 # Main app component
+├── pb_backend/                 # Node.js backend
+│   ├── server.ts              # Express server
+│   └── package.json
+├── database_schema.sql         # Database structure
+├── setup.sh                   # Database setup script
 └── README.md
 ```
 
-## API Endpoints
+## 🛠️ Technology Stack
+
+### Frontend
+
+- **React Native** - Cross-platform mobile development
+- **Expo** - Development platform and tools
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first styling
+- **React Navigation** - Navigation library
+- **AsyncStorage** - Local data persistence
+
+### Backend
+
+- **Node.js** - JavaScript runtime
+- **Express** - Web framework
+- **MySQL** - Relational database
+- **JWT** - Authentication tokens
+- **bcrypt** - Password hashing
+
+## 📱 Screenshots
+
+### Onboarding Experience
+
+![Welcome Screen](screenshots/welcome-screen.png)
+_Welcome to PocketLedger - Your personal finance companion_
 
 ### Authentication
 
-- `POST /api/register` - Register new user
-- `POST /api/login` - Login user
+![Login Screen](screenshots/login-screen.png)
+_Secure login with modern dark theme design_
 
-### Transactions
+### Main Features
 
-- `GET /api/transactions` - Get user transactions
-- `POST /api/transactions` - Create transaction
-- `PUT /api/transactions/:id` - Update transaction
-- `DELETE /api/transactions/:id` - Delete transaction
+_Additional screenshots of the main app features will be added here_
 
-### Analytics
+## 🔧 Development
 
-- `GET /api/analytics` - Get spending analytics
-
-### Tags/Categories
-
-- `GET /api/tags/:userId` - Get user tags
-- `POST /api/tags` - Create tag
-- `PUT /api/tags/:id` - Update tag
-- `DELETE /api/tags/:id` - Delete tag
-
-### Budgets
-
-- `GET /api/budgets` - Get user budgets
-- `POST /api/budgets` - Create budget
-
-### Profile
-
-- `PUT /api/profile` - Update profile
-- `PUT /api/change-password` - Change password
-
-## Development
-
-### Running Tests
+### Available Scripts
 
 ```bash
-# Backend tests
-cd pb_backend
-npm test
+# Frontend
+npm start          # Start Expo development server
+npm run android    # Run on Android device/emulator
+npm run ios        # Run on iOS device/simulator
+npm run web        # Run web version
 
-# Frontend tests
-cd ap
-npm test
+# Backend
+npm run dev        # Start development server
+npm run build      # Build for production
+npm start          # Start production server
 ```
 
-### Building for Production
+### Database Schema
 
-#### Mobile App
+The app uses a MySQL database with the following main tables:
 
-```bash
-cd ap
-# Build for iOS
-expo build:ios
+- `users` - User accounts and authentication
+- `transactions` - Financial transactions
+- `tags` - Custom categories for transactions
+- `budgets` - User budget settings
 
-# Build for Android
-expo build:android
-```
+See `database_schema.sql` for the complete schema.
 
-#### Backend
+## 🔐 Security Features
 
-```bash
-cd pb_backend
-npm run build
-```
+- **JWT Authentication** - Secure token-based auth
+- **Password Hashing** - bcrypt encryption
+- **Input Validation** - Server-side validation
+- **SQL Injection Prevention** - Parameterized queries
+- **CORS Protection** - Cross-origin request security
 
-## Environment Variables
+## 🚀 Deployment
 
-### Backend (.env)
+### Mobile App
 
-- `DB_HOST` - Database host
-- `DB_USER` - Database username
-- `DB_PASSWORD` - Database password
-- `DB_NAME` - Database name
-- `API_PORT` - Server port
-- `JWT_SECRET` - JWT secret key
+1. Build for production: `expo build`
+2. Submit to app stores using Expo Application Services (EAS)
 
-### Frontend (config/api.ts)
+### Web App
 
-- `API_BASE_URL` - Backend API URL
+1. Build static files: `expo export:web`
+2. Deploy to any static hosting service (Vercel, Netlify, etc.)
 
-## Contributing
+### Backend
+
+1. Deploy to cloud provider (AWS, DigitalOcean, etc.)
+2. Set up MySQL database
+3. Configure environment variables
+4. Start production server
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## 🙏 Acknowledgments
 
-For support, email support@pocketledger.com or create an issue in the repository.
+- Expo team for the amazing development platform
+- React Native community for excellent libraries
+- Tailwind CSS for beautiful styling utilities
 
-## Screenshots
+---
 
-[Add screenshots of your app here]
-
-## Roadmap
-
-- [ ] Dark/Light theme toggle
-- [ ] Data export functionality
-- [ ] Push notifications
-- [ ] Biometric authentication
-- [ ] Multi-currency support
-- [ ] Recurring transactions
-- [ ] Investment tracking
-- [ ] Bill reminders
+**Built with ❤️ for better financial management**
