@@ -40,7 +40,7 @@ A modern, cross-platform personal finance management app built with React Native
 1. **Clone the repository**
 
    ```bash
-   git clone <your-repo-url>
+   git clone <https://github.com/Mark-Prog238/PocketLedger>
    cd PocketLedger-mobile_app
    ```
 
